@@ -1,0 +1,7 @@
+Práctica 3 Estructuras datos UPIITA.
+
+Se te proporcionará un archivo con números.
+Leer el archivo, ingresarlo en una lista doblemente enlazada, ordenarla y guardar en un archivo los números ordenados.
+
+
+Para esta práctica puede usar cualquier método de ordenamiento, en mi caso se usó Selection Sort, ya que es muy sencillo de implementar y tenía flojera.
