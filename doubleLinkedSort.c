@@ -26,6 +26,7 @@ Node * changePosition(Node *, int, int);
 Node * changeItem(Node *, int, int);
 /*Función mostrar lista*/
 void show(Node *);
+void showAll(Node *);
 /*Funcion tamaño lista*/
 int theSize(Node *);
 /*Funcion buscar elemento*/
@@ -34,7 +35,7 @@ int searchItem(Node *, int);
 Node *readFile(Node *);
 void createFile(Node *);
 /*Funcion ordenar lista*/
-Node *sortList(Node *);
+void sortList(Node *);
 
 
 /*Inicia programa principal*/
@@ -50,8 +51,9 @@ void menu(){
   int opt=0, data=0, position=0, item=0;
   Node *list = NULL;
   list = readFile(list);
+  sortList(list);
   createFile(list);
-  /*do{
+  do{
     printf("\n1. Ingresar dato\n2. Eliminar dato\n3. Cambiar dato\n4. Mostrar lista\n5. Mostrar tamano\nIngresa opcion deseada: ");
     fflush(stdin);
     scanf("%i", &opt);
@@ -135,7 +137,7 @@ void menu(){
           printf("El tamano es: %i", theSize(list));
         break;
     }
-  }while (opt != -1); */
+  }while (opt != -1); 
 }
 
 
@@ -398,4 +400,37 @@ void createFile(Node *_list){
     _list = _list->next;
   }
   fclose(file);
+}
+
+void  sortList(Node *_list){
+  int min = 0;
+  Node *sortedList = NULL, *aux = NULL;
+
+  while(_list){ 
+    sortedList = _list; 
+    aux = _list->next;
+    while(aux){ //Encuentro el elemento menor
+      if(aux->data < sortedList->data){
+        sortedList = aux;
+      }
+      aux = aux->next; //Recorrro mi lista auxiliar
+    }
+    if (sortedList != _list) { //Intercambio la información
+      min = sortedList->data;
+      sortedList->data = _list->data;
+      _list->data = min;
+    } 
+    _list = _list->next; //Recorro mi lista
+  }
+
+}
+
+void showAll(Node *_list){
+  if (!_list){
+    printf("Vacia");
+  }
+  while(_list){
+    printf("%i\t", _list->data);
+    _list = _list->next;
+  } 
 }
